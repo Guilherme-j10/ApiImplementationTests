@@ -29,4 +29,17 @@ export class DatabaseOperationsUser implements IUserRespositories {
     return false;
   }
 
+  async DeleteUserById(id: number): Promise<boolean> {
+    const response = await Conn('users').where({ id_user: id }).delete();
+    if(response){
+      return true;
+    }
+
+    return false;
+  }
+
+  async SelectUserBy(Place: String, Value: String | Number): Promise<User[]> {
+    return await Conn('users').where(`${Place}`, Value);
+  }
+
 }

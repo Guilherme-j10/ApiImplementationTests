@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.controllerOperations = void 0;
+const DatabaseOperationsUser_1 = require("../../repositories/implementations/DatabaseOperationsUser");
+const ControllerOperationsUser_1 = require("./ControllerOperationsUser");
+const UserOperationsUseCases_1 = require("./UserOperationsUseCases");
+const databaseOperationsUser = new DatabaseOperationsUser_1.DatabaseOperationsUser();
+const operationsUserCase = new UserOperationsUseCases_1.UserOperationsUseCases(databaseOperationsUser);
+const controllerOperations = new ControllerOperationsUser_1.ControllerOperationsUser(operationsUserCase);
+exports.controllerOperations = controllerOperations;

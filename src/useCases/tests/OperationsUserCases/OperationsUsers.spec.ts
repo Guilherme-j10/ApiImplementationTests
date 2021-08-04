@@ -23,7 +23,7 @@ describe("User Operations Tests", () => {
     const user = await userOperationsServices.CreateUser(userdata);
 
     expect(user[0]).toHaveProperty("id_user");
-    expect(user[0].name_user).toBe('Teste common')
+    expect(user[0].name_user).toBe('Teste common');
   });
 
   it('Should not be able create user', async () => {
@@ -39,6 +39,29 @@ describe("User Operations Tests", () => {
       new Error('this user alredy exists')
     );
   });
+
+  it('Should be able delete user', async () => {
+    const userCreated = await userOperationsServices.CreateUser({
+      email: 'testToDelete@gmail.com',
+      name: 'Test to delete',
+      pass: 'something'
+    });
+
+    expect(userOperationsServices.DeleteUser(Number(userCreated[0].id_user))).resolves.toEqual(true);
+  });
+
+  it('Not should be able delete user', async () => {
+    const userCreated = await userOperationsServices.CreateUser({
+      email: 'testToDelete@gmail.com',
+      name: 'Test to delete',
+      pass: 'something'
+    });
+
+    await userOperationsServices.DeleteUser(Number(userCreated[0].id_user));
+    expect(userOperationsServices.DeleteUser(Number(userCreated[0].id_user))).rejects.toEqual(
+      new Error('Probaly this register has alredy been deleted.')
+    );
+  })  
 
   afterAll(async () => {
     await ImpOperations.DeleteUser('test@gmail.com');

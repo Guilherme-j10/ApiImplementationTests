@@ -28,4 +28,26 @@ export class ControllerOperationsUser {
     }
   }
 
+  async deleteUser(req: Request, res: Response): Promise<Response>{
+    try {
+      return res.json((await this.useCaseOperationsUser.DeleteUser(Number(req.params.id))));
+    } catch (error) {
+      return res.json({
+        error: true,
+        message: error.message
+      })
+    }
+  }
+
+  async getUserData(req: Request, res: Response): Promise<Response>{
+    try {
+      return res.json((await this.useCaseOperationsUser.SelectUser(Number(req.params.id))));
+    } catch (error) {
+      return res.json({
+        error: true,
+        message: error.message
+      })
+    }
+  }
+
 }

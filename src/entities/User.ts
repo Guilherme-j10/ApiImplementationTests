@@ -1,5 +1,6 @@
 export class User {
 
+  public id_user?: number;
   public name_user: String;
   public email_user: String;
   public password_user: String;

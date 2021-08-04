@@ -27,4 +27,19 @@ export class UserOperationsUseCases {
     );
   }
 
+  async DeleteUser(id: number){
+    const result = await this.useIinterfaceRespositorie.DeleteUserById(id);
+
+    if(result){
+      return true;
+    }
+
+    throw new Error('Probaly this register has alredy been deleted.');
+  }
+
+  async SelectUser(id: number){
+    const result = await this.useIinterfaceRespositorie.SelectUserBy('id_user', id);
+    return result;
+  }
+
 }

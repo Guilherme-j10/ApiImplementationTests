@@ -5,7 +5,7 @@ module.exports = {
       host: 'localhost',
       user: 'root',
       password: '',
-      database : 'solidapi'
+      database : 'tsbank'
     },
     migrations: {
       tableName: 'migrations_knex'
